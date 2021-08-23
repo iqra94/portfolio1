@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://unpkg.com/boxicon@2.0.9/css/boxicons.min.css" rel="stylsheet">
+  <style>
+    /* GOOGLE FONTS */
+
+    /* VARIABLE CSS */
+    :root{
+      --header-height: 3rem;
+      --nav-width: 324px;
+      /* Font weight */
+      --font-medium: 500;
+      --font-semi-bold: 600;
+      --font-bold: 700;
+      /* Colors */
+      --first-color: #cc4b2c;
+      --first-color-dark: #662616;
+      --first-color-darken: #290f09;
+      --text-color: #54423d;
+      --first-color-light: #eae7e6;
+      --first-color-lighten: #fffafa;
+      /* Font and typography */
+      --body-font: 'arial', san-serif;
+      --h1-font-size: 1.5rem;
+      --h2-font-size: 1.25rem;
+      --h3-font-size: 1.rem;
+      --normal-font-size: .938rem;
+      --small-font-size: .813rem;
+      --smaller-font-size: .75rem;
+      /* Margenes */
+      --mb-1: .5rem;
+      --mb-2: 1rem;
+      --mb-3: 1.5rem;
+      --mb-4: 2rem;
+      --mb-5: 2.5rem;
+      /* z index */
+      --z-index: 100;
+    }
+    
+    @media screen and (min-width: 768px) {
+      :root{
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+      }
+    }
+
+    /* BASE */
+    *,::before,::after{
+      box-sizing: border-box;
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+    body{
+      margin: var(--header-height) 0 0 0;
+      font-family: var(--body-font);
+      font-size: var(--normal-font-size);
+      font-weight: var(--font-medium);
+      background-color: var(--first-color-lighten);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    h1,h2,h3,p{
+      margin: 0;
+    }
+    h3{
+      font-weight: var(--font-semi-bold);
+    }
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    img{
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* CLASS CSS */
+    .section{
+      padding: 4rem 0 2rem;
+    }
+    .section-title{
+      font-size: var(--h1-font-size);
+      color: var(--first-color);
+      margin-bottom: var(--mb-3);
+      text-align: center;
+    }
+    .section-subtitle{
+      display: block;
+      font-size: var(--small-font-size);
+      color: var(--first-color-darken);
+      text-align: center;
+      font-weight: var(--font-bold);
+      margin-bottom: .25rem;
+    }
+
+    /* LAYOUT */
+    .bd-grid{
+      max-width: 1024px;
+      display: grid;
+      grid-template-columns: 100%;
+      column-gap: 2rem;
+      width: calc(100% - 2rem);
+      margin-left: var(--mb-2);
+      margin-right: var(--mb-2);
+    }
+    .l-header{
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-index);
+      background-color: var(--first-color-lighten);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    }
+
+    /* NAV */
+    .nav{
+      height: var(--header-height);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav__menu{
+      position: fixed;
+      top: 0;
+      /* left: 0; */
+      left: -100%;
+      width: 90%;
+      height: 100vh;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      background-color: var(--first-color);
+      transition: .5s;
+    }
+    .nav__close{
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      color: var(--first-color-dark);
+      cursor: pointer;
+    }
+    .nav__item{
+      margin-bottom: var(--mb-4);
+    }
+    .nav__link{
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--first-color-lighten);
+      font-weight: var(--font-bold);
+      transition: .3s;
+    }
+    .nav__link:hover{
+      color: var(--text-color);
+    }
+    .nav__toggle{
+      color: var(--first-color-dark);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    /* Show menu */
+    .show{
+      left: 0;
+    }
+    .active{
+      color: var(--text-color);
+    }
+
+    /* HOME */
+    .home__container{
+      height: calc(100vh - var(--header-height));
+      align-items: center;
+    }
+    .home__data{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: max-content;
+      text-align: center;
+    }
+    .home__img{
+      padding-top: 1.3rem;
+      padding-left: .8rem;
+      width: 160px;
+      height: 160px;
+      background-color: var(--text-color);
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: var(--mb-2);
+    }
+    .home__img img{
+      width: 155px;
+    }
+    .home__title{
+      font-size: var(--h1-font-size);
+      color: var(--first-color);
+      font-weight: var(--font-semi-bold);
+    }
+    .home__profession{
+      font-size: var(--small-font-size);
+      color: var(--first-color-dark);
+      margin-bottom: var(--mb-5);
+    }
+    .home__social{
+      margin-bottom: 5rem;
+    }
+    .home__social-link{
+      display: inline-flex;
+      background-color: var(--first-color);
+      color: var(--first-color-lighten);
+      font-size: 1.1rem;
+      border-radius: 50%;
+      padding: .40rem;
+      margin: 0 var(--mb-1);
+      transition: .3s;
+    }
+    .home__social-link:hover{
+      background-color: var(--first-color-dark);
+    }
+    .home__button{
+      width: 100%;
+    }
+    /* BUTTONS */
+    .button{
+      display: inline-block;
+      background-color: var(--first-color);
+      color: var(--first-color-lighten);
+      padding: 1rem 2rem;
+      font-weight: var(--font-semi-bold);
+      border-radius: .5rem;
+      transition: .3s;
+    }
+    .button:hover{
+      background-color: var(--first-color-dark);
+    }
+    .button__light{
+      background-color: var(--first-color-lighten);
+      color: var(--first-color);
+    }
+    .button__light:hover{
+      color: var(--first-color-lighten);
+    }
+
+    /* ABOUT */
+    .about__container{
+      row-gap: 3rem;
+    }
+    .about__data{
+      text-align: center;
+    }
+    .about__description{
+      margin-bottom: var(--mb-4);
+    }
+    .about__img{
+      width: 150px;
+      border-radius: .5rem;
+      margin: 0 auto;
+    }
+    .about__information{
+      margin-bottom: var(--mb-4);
+    }
+    .about__information-title{
+      font-size: var(--h3-font-size);
+      color: var(--first-color-dark);
+      margin-bottom: var(--mb-2);
+    }
+    .about__information-data{
+      display: flex;
+      align-items: center;
+      padding-left: 1.5rem;
+      margin-bottom: var(--mb-3);
+    }
+    .about__information-icon{
+      font-size: 1.5rem;
+      color: var(--first-color);
+      margin-right: var(--mb-4);
+    }
+    .about__information-subtitle{
+      display: block;
+      font-weight: var(--font-semi-bold);
+    }
+    .about__information-subtitle-small{
+      font-size: var(--small-font-size);
+    }
+
+    /* SKILLS */
+    .skills__container{
+      row-gap: 3rem;
+    }
+    .skills__subtitle{
+      font-size: var(--h3-font-size);
+      color: var(--first-color-dark);
+      margin-bottom: var(--mb-2);
+    }
+    .skills__data{
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 var(--mb-2);
+      margin-bottom: var(--mb-4);
+    }
+    .skills__name{
+      text-transform: uppercase;
+    }
+    .skills__bar{
+      position: absolute;
+      bottom: -.75rem;
+      height: .25rem;
+      background-color: var(--first-color);
+    }
+    .skills__html{
+      width: 80%;
+    }
+    .skills__js{
+      width: 90%;
+    }
+    .skills__react{
+      width: 70%;
+    }
+    .skills__angular{
+      width: 60%;
+    }
+    .skills__php{
+      width: 80%;
+    }
+    .skills__node{
+      width: 70%;
+    }
+    .skills__firebase{
+      width: 90%;
+    }
+    .skills__python{
+      width: 60%;
+    }
+
+    /* EDUCATION */
+    .education__container{
+      row-gap: 3rem;
+    }
+    .education__content{
+      display: grid;
+      grid-template-columns: 1fr max-content 1fr;
+    }
+    .education__year, .education__race{
+      font-size: var(--h3-font-size);
+      margin-bottom: .25rem;
+    }
+    .education__university, .education__specialty{
+      display: block;
+      font-size: var(--smaller-font-size);
+    }
+    .education__year, .education__university{
+      text-align: right;
+    }
+    .education__time{
+      padding: 0 1rem;
+      justify-self: center;
+    }
+    .education__rounder{
+      position: relative;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: var(--first-color);
+      border-radius: 50%;
+    }
+    .education__rounder::before{
+      content: '';
+      position: absolute;
+      transform: translate(-4px, -4px);
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--first-color);
+      border-radius: 50%;
+    }
+    .education__line{
+      display: block;
+      height: 90%;
+      width: 2px;
+      background-color: var(--first-color);
+      transform: translate(5px, -4px);
+    }
+
+    /* SERVICES */
+    .services__container{
+      row-gap: 3rem;
+    }
+    .services__content{
+      padding: 1.5rem .5rem;
+      border: 2px solid var(--first-color);
+      border-radius: .5rem;
+      text-align: center;
+    }
+    .services__icon{
+      font-size: 2rem;
+      padding: .5rem;
+      background-color: var(--first-color);
+      color: var(--first-color-lighten);
+      border-radius: 50%;
+      margin-bottom: var(--mb-2);
+    }
+    .services__title{
+      font-size: 1.25rem;
+      color: var(--first-color-dark);
+      margin-bottom: var(--mb-1);
+    }
+    .services__content, .services__icon, .services__description, .services__title{
+      transition: .5s;
+    }
+    .services__content:hover{
+      background-color: var(--first-color);
+    }
+    .services__content:hover .services__icon{
+      background-color: var(--first-color-lighten);
+      color: var(--first-color);
+    }
+    .services__content:hover .services__title{
+      color: var(--first-color-lighten);
+    }
+    .services__content:hover .services__description{
+      color: var(--first-color-lighten);
+    }
+    /* PROJECT IN MIND */
+    .project{
+      background-color: var(--first-color);
+      padding-bottom: 0;
+    }
+    .project__container{
+      row-gap: 3rem;
+    }
+    .project__data{
+      text-align: center;
+    }
+    .project__title, .project__description{
+      color: var(--first-color-lighten);
+    }
+    .project__description{
+      margin-bottom: var(--mb-4);
+    }
+    .project__img{
+      width: 220px;
+      justify-self: center;
+    }
+
+    /* WORKS */
+    .works__container{
+      justify-content: center;
+      row-gap: 3rem;
+    }
+    .works__img{
+      position: relative;
+      overflow: hidden;
+      border-radius: .5rem;
+    }
+    .works__data{
+      position: absolute;
+      /* top: 0; */
+      bottom: -100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(204, 75, 44, .7);
+      border-radius: .5rem;
+      transition: .3s;
+    }
+    .works__link{
+      display: inline-flex;
+      font-size: 1.5rem;
+      background-color:var(--first-color-lighten);
+      color: var(--first-color);
+      padding: .25rem;
+      border-radius: .25rem;
+      margin-bottom: var(--mb-2);
+    }
+    .works__title{
+      font-size: var(--h2-font-size);
+      color: var(--first-color-lighten);
+    }
+    .works__img:hover .works__data{
+      bottom: 0;
+    }
+
+    /* CONTACT */
+    .contact__container{
+      row-gap: 3rem;
+    }
+
+    .contact__input{
+      width: 100%;
+      padding: 1rem;
+      outline: none;
+      border: none;
+      background-color: var(--first-color-light);
+      font-size: var(--normal-font-size);
+      margin-bottom: var(--mb-2);
+      border-radius: .5rem;
+    }
+    .contact ::placeholder{
+      color: var(--first-color-dark);
+      font-family: var(--body-font);
+      font-weight: var(--font-medium);
+    }
+    .contact__button{
+      outline: none;
+      border: none;
+      font-family: var(--body-font);
+      font-size: var(--normal-font-size);
+      cursor: pointer;
+    }
+    .contact__info{
+      margin-bottom: var(--mb-3);
+    }
+    .contact__subtitle{
+      font-size: var(--h3-font-size);
+      color: var(--first-color-dark);
+      margin-bottom: var(--mb-1);
+    }
+    .contact__text{
+      display: block;
+      padding-left: 1rem;
+    }
+    /* FOOTER */
+    .footer{
+      background-color: var(--first-color-dark);
+      color: var(--first-color-lighten);
+      text-align: center;
+    }
+    .footer__title{
+      font-size: var(--h1-font-size);
+      margin-bottom: var(--mb-2);
+    }
+    .footer__description{
+      margin-bottom: var(--mb-2);
+    }
+    .footer__social{
+      margin-bottom: 3rem;
+    }
+    .footer__link{
+      display: inline-flex;
+      background-color: var(--first-color);
+      color: var(--first-color-lighten);
+      font-size: 1.1rem;
+      border-radius: 50%;
+      padding: .40rem;
+      margin: 0 var(--mb-1);
+      transition: .3s;
+    }
+    .footer__link:hover{
+      background-color: var(--first-color-lighten);
+      color: var(--first-color);
+    }
+    .footer__copy{
+      font-size: var(--smaller-font-size);
+      color: var(--text-color);
+    }
+
+    /* MEDIA QUERIES */
+    @media (min-width: 768px){
+      .home__button{
+        width: initial;
+      }
+      .nav__menu{
+        width: var(--nav-width);
+      }
+      .about__container, .skills__container, .services__container, .works__container, .contact__container, .contact__inputs{
+        grid-template-columns: repeat(2,1fr);
+      }
+      .about__data{
+        text-align: initial;
+      }
+      .about__description{
+        margin-bottom: var(--mb-5);
+      }
+      .about__img{
+        width: 220px;
+      }
+      .about__information{
+        padding-left: 4rem;
+      }
+      .education__time{
+        padding: 0 2rem;
+      }
+      .project{
+        background: none;
+      }
+      .project__container{
+        background-color: var(--first-color);
+        grid-template-columns: 2fr 1.2fr;
+        padding: 0 2rem;
+        border-radius: .5rem;
+      }
+      .project__data{
+        padding: 3rem;
+      }
+      .project__title, .project__data{
+        text-align: initial;
+      }
+      .project__img{
+        width: 230px;
+        align-self: flex-end;
+      }
+      .contact__inputs{
+        display: grid;
+        column-gap: 1.5rem;
+      }
+      .contact__info{
+        padding-left: 3rem;
+      }
+      .footer{
+        background: none;
+      }
+      .footer__container{
+        background-color: var(--first-color-darken);
+        padding: 3rem 0;
+        border-radius: .5rem;
+      }
+    }
+
+    @media (min-width: 1024px){
+      body{
+        margin: 0;
+        padding-left: var(--nav-width);
+      }
+      .l-header{
+        width: 0;
+      }
+      .nav__toggle, .nav__logo, .nav__close{
+        display: none;
+      }
+      .nav__menu{
+        left: 0;
+      }
+      .home__container{
+        height: 100vh;
+      }
+      .section{
+        padding: 3rem 0 2rem;
+      }
+      .bd-grid{
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .services__container, .works__container{
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="node_modules/boxicons/css/boxicons.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="l-header">
+    <nav class="nav bd-grid">
+      <div class="nav__toggle" id="nav-toggle">
+        <i class="bx bx-menu"></i>
+      </div>
+
+      <div>
+        <a href="#" class="nav__logo">Iqra</a>
+      </div>
+
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__close" id="nav-close">
+          <i class="bx bx-x"></i>
+        </div>
+
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+          <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+          <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+          <li class="nav__item"><a href="#works" class="nav__link">Works</a></li>
+          <li class="nav__item"><a href="#contact" class="nav__link">Contact Me</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="l-main">
+    <!-- HOME -->
+    <section class="home" id="home">
+      <div class="home__container bd-grid">
+        <div class="home__data">
+          <div class="home__img">
+            <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          </div>
+
+          <h1 class="home__title">Iqra Misbahudin</h1>
+          <span class="home__profession">Frontend Developer</span>
+
+          <div class="home__social">
+            <a href="#" class="home__social-link"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="home__social-link"><i class="bx bxl-github"></i></a>
+            <a href="#" class="home__social-link"><i class="bx bxl-dribbble"></i></a>
+            <a href="#" class="home__social-link"><i class="bx bxl-behance"></i></a>
+          </div>
+
+          <a href="#" download="" class="button home__button">Download Resume</a>
+        </div>
+      </div>
+    </section>
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+      <span class="section-subtitle">My intro</span>
+      <h2 class="section-title">About Me</h2>
+
+      <div class="about__container bd-grid">
+        <div class="about__data">
+          <p class="about__description">Hi, I'm a frontend developer, passionate about creating and developing web interface. I have many years of experience in this area of work, with multiple quality project</p>
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="" class="about__img">
+        </div>
+
+        <div>
+          <div class="about__information">
+            <h3 class="about__information-title">Information</h3>
+            
+            <div class="about__information-data">
+              <i class="bx bx-user about__information-icon"></i>
+              <span>Iqra Misbahudin</span>
+            </div>
+  
+            <div class="about__information-data">
+              <i class="bx bx-phone about__information-icon"></i>
+              <span>999-888-777</span>
+            </div>
+            
+            <div class="about__information-data">
+              <i class="bx bx-envelope about__information-icon"></i>
+              <span>user@gmail.com</span>
+            </div>
+          </div>
+  
+          <div class="about__information">
+            <h3 class="about__information-title">Experience and support</h3>
+            
+            <div class="about__information-data">
+              <i class="bx bx-medal about__information-icon"></i>
+              <div>
+                <span class="about__information-subtitle">5 Years Job</span>
+                <span class="about__information-subtitle-small">Experience</span>
+              </div>
+            </div>
+            
+            <div class="about__information-data">
+              <i class="bx bx-briefcase about__information-icon"></i>
+              <div>
+                <span class="about__information-subtitle">50+ Project</span>
+                <span class="about__information-subtitle-small">Completed</span>
+              </div>
+            </div>
+            
+            <div class="about__information-data">
+              <i class="bx bx-support about__information-icon"></i>
+              <div>
+                <span class="about__information-subtitle">Support</span>
+                <span class="about__information-subtitle-small">Online 24/7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- SKILLS -->
+    <section class="skills section" id="skills">
+      <span class="section-subtitle">Why Choose Me</span>
+      <h2 class="section-title">My expertise Area</h2>
+
+      <div class="skills__container bd-grid">
+        <div class="skills__content">
+          <h3 class="skills__subtitle">Frontend</h3>
+          
+          <div class="skills__data">
+            <span class="skills__name">Html/css</span>
+            <span class="skills__number">80%</span>
+            <span class="skills__bar skills__html"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">Javascript</span>
+            <span class="skills__number">90%</span>
+            <span class="skills__bar skills__js"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">React</span>
+            <span class="skills__number">70%</span>
+            <span class="skills__bar skills__react"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">Angular</span>
+            <span class="skills__number">60%</span>
+            <span class="skills__bar skills__angular"></span>
+          </div>
+        </div>
+
+        <div class="skills__content">
+          <h3 class="skills__subtitle">Backend</h3>
+          
+          <div class="skills__data">
+            <span class="skills__name">Php</span>
+            <span class="skills__number">80%</span>
+            <span class="skills__bar skills__php"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">Node js</span>
+            <span class="skills__number">70%</span>
+            <span class="skills__bar skills__node"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">Firebase</span>
+            <span class="skills__number">90%</span>
+            <span class="skills__bar skills__firebase"></span>
+          </div>
+
+          <div class="skills__data">
+            <span class="skills__name">Python</span>
+            <span class="skills__number">60%</span>
+            <span class="skills__bar skills__python"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- EDUCATION -->
+    <section class="education section">
+      <span class="section-subtitle">Qualification</span>
+      <h2 class="section-title">My Education</h2>
+
+      <div class="education__container bd-grid">
+        <div class="education__content">
+          <div>
+            <h3 class="education__year">2010 - 2013</h3>
+            <span class="education__university">University of Studies</span>
+          </div>
+
+          <div class="education__time">
+            <span class="education__rounder"></span>
+            <span class="education__line"></span>
+          </div>
+
+          <div>
+            <h3 class="education__race">Diploma Development</h3>
+            <span class="education__specialty">Frontend</span>
+          </div>
+        </div>
+
+        <div class="education__content">
+          <div>
+            <h3 class="education__year">2014 - 2017</h3>
+            <span class="education__university">University of Studies</span>
+          </div>
+
+          <div class="education__time">
+            <span class="education__rounder"></span>
+            <span class="education__line"></span>
+          </div>
+
+          <div>
+            <h3 class="education__race">Diploma Development</h3>
+            <span class="education__specialty">Backend</span>
+          </div>
+        </div>
+
+        <div class="education__content">
+          <div>
+            <h3 class="education__year">2018 - 2020</h3>
+            <span class="education__university">University of Studies</span>
+          </div>
+
+          <div class="education__time">
+            <span class="education__rounder"></span>
+            <span class="education__line"></span>
+          </div>
+
+          <div>
+            <h3 class="education__race">Diploma Design</h3>
+            <span class="education__specialty">UI/UX</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SERVICES -->
+    <section class="services section" id="services">
+      <span class="section-subtitle">What I Offer</span>
+      <h2 class="section-title">My Services</h2>
+
+      <div class="services__container bd-grid">
+        <div class="services__content">
+          <i class="bx bx-code services__icon"></i>
+          <h3 class="services__title">Web Design</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+
+        <div class="services__content">
+          <i class="bx bx-pen services__icon"></i>
+          <h3 class="services__title">Graphic Design</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+
+        <div class="services__content">
+          <i class="bx bx-brush services__icon"></i>
+          <h3 class="services__title">UI/UX</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+
+        <div class="services__content">
+          <i class="bx bx-server services__icon"></i>
+          <h3 class="services__title">Backend Development</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+
+        <div class="services__content">
+          <i class="bx bx-pencil services__icon"></i>
+          <h3 class="services__title">Content Writing</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+
+        <div class="services__content">
+          <i class="bx bx-mobile services__icon"></i>
+          <h3 class="services__title">Interface Movil</h3>
+          <p class="services__description">This service that I offer is of high quality, and above all experience that I have in the labor field for many years.</p>
+        </div>
+      </div>
+    </section>
+    <!-- PROJECT IN MIND -->
+    <section class="project section">
+      <div class="project__container bd-grid">
+        <div class="project__data">
+          <h2 class="section-title project__title">Do you have a project in mind</h2>
+          <p class="project__description">If you have a project that you want to carry out, do not hesitate and tell me what it is, and what services I can offer you, contact me directly here.</p>
+          <a href="#contact" class="button button__light">Contact Me</a>
+        </div>
+
+        <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="" class="project__img">
+      </div>
+    </section>
+    <!-- WORKS -->
+    <section class="works section" id="works">
+      <span class="section-subtitle">My portfolio</span>
+      <h2 class="section-title">Recent Works</h2>
+
+      <div class="works__container bd-grid">
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 1</span>
+          </div>
+        </div>
+
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 2</span>
+          </div>
+        </div>
+
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 3</span>
+          </div>
+        </div>
+
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 4</span>
+          </div>
+        </div>
+
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 5</span>
+          </div>
+        </div>
+
+        <div class="works__img">
+          <img src="../4-special-function-and-keyword/code/img/2.jpg" alt="">
+          
+          <div class="works__data">
+            <a href="#" class="works__link"><i class="bx bx-link-alt"></i></a>
+            <span class="works__title">Work 6</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+      <span class="section-subtitle">Contact Me</span>
+      <h2 class="section-title">Get In Touch</h2>
+
+      <div class="contact__container bd-grid">
+        <from class="contact__form">
+          <div class="contact__inputs">
+            <input type="text" class="contact__input" placeholder="Name">
+            <input type="text" class="contact__input" placeholder="Email">
+          </div>
+
+          <input type="text" class="contact__input" placeholder="Project">
+
+          <textarea name="" class="contact__input" id="" cols="0" rows="10" placeholder="Message"></textarea>
+
+          <input type="submit" class="button contact__button" value="Send Message">
+        </from>
+
+        <div>
+          <div class="contact__info">
+            <h3 class="contact__subtitle">Call Me</h3>
+            <span class="contact__text">999-000-123</span>
+            <span class="contact__text">999-000-123</span>
+          </div>
+          
+          <div class="contact__info">
+            <h3 class="contact__subtitle">E-mail</h3>
+            <span class="contact__text">iqrauser@gmail.com</span>
+            <span class="contact__text">contactme@iqra.com</span>
+          </div>
+          
+          <div class="contact__info">
+            <h3 class="contact__subtitle">Location</h3>
+            <span class="contact__text">Gandaria Selatan - Cilandak</span>
+            <span class="contact__text">Jakarta Selatan - Indonesia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer class="footer section">
+    <div class="footer__container bd-grid">
+      <h1 class="footer__title">Iqra</h1>
+      <p class="footer__description">I am Iqra and this is my personal website, consult me here</p>
+    
+      <div class="footer__social">
+        <a href="#" class="footer__link"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="footer__link"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="footer__link"><i class="bx bxl-twitter"></i></a>
+      </div>
+      
+      <p class="footer__copy">Allright reserved y Love - 2020</p>
+    </div>
+  </footer>
+
+  <!-- MAIN JS -->
+  <script>
+    // MENU SHOW Y HIDDEN
+    const navMenu = document.getElementById('nav-menu'),
+          toggleMenu = document.getElementById('nav-toggle'),
+          closeMenu = document.getElementById('nav-close')
+    // SHOW
+    toggleMenu.addEventListener('click', ()=>{
+      navMenu.classList.toggle('show')
+    })
+    // HIDDEN
+    closeMenu.addEventListener('click', ()=>{
+      navMenu.classList.remove('show')
+    })
+    // REMOVE MENU
+    const navLink = document.querySelectorAll('.nav__link')
+
+    function linkAction(){
+      navMenu.classList.remove('show')
+    }
+    navLink.forEach((n) => {n.addEventListener('click', linkAction)})
+    // SCROLL SELECTIONS ACTIVE LINK
+    const sections = document.querySelectorAll('section[id]')
+
+    window.addEventListener('scroll', scrollActive)
+
+    function scrollActive(){
+      const scrollY = window.pageYOffset
+
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+              sectionTop = current.offsetTop - 50,
+              sectionId = current.getAttribute('id')
+
+          if(scrollY > sectionTop && scrollY <= sectionTop +sectionHeight){
+            document.querySelector('.nav__menu a[href*='+ sectionId +']').classList.add('active')
+          } else {
+            document.querySelector('.nav__menu a[href*='+ sectionId +']').classList.remove('active')
+          }
+      })
+    }
+  </script>
+  <!-- 
+    ABOUT
+    about__description
+    Hi, I'm a frontend developer, passionate about creating and developing web interface. I have years of experience in this area of work, with multiple quality projects.
+
+    SERVICES
+    services__description
+    This service that I offer is of high quality, and above all experience that I have in the labor field for many years.
+
+    PROJECT IN MIND
+    project__description
+    If you have a project that you want to carry out, do not hesitate and tell me what it is, and what services I can offer you, contact me directly here.
+  -->
+</body>
+</html>
